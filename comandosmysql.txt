@@ -1,0 +1,48 @@
+docker run --rm -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -v datosdb:/var/lib/mysql mysql
+
+create database hydrowatch;
+use hydrowatch;
+create user 'me'@'localhost' identified by '123';
+create user 'me'@'127.0.0.1' identified by '123';
+create user 'me'@'%' identified by '123';
+grant all privileges on hydrowatch.* to 'me'@'localhost';
+grant all privileges on hydrowatch.* to 'me'@'127.0.0.1'; 
+grant all privileges on hydrowatch.* to 'me'@'%';
+flush privileges;
+
+ALTER USER 'me'@'localhost' IDENTIFIED WITH mysql_native_password BY '123';
+ALTER USER 'me'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY '123';
+ALTER USER 'me'@'%' IDENTIFIED WITH mysql_native_password BY '123';
+flush privileges;
+
+create table reportesTanques(
+   reporteid INT NOT NULL AUTO_INCREMENT,
+   tanqueName VARCHAR(100) NOT NULL,
+   nivel INT NOT NULL,
+   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY ( reporteid )
+);
+
+insert into reportesTanques (tanqueName, nivel) VALUE ("Manumanito", 90);
+
+insert into reportesTanques (tanqueName, nivel) VALUE ("Manumanito", 87);
+
+insert into reportesTanques (tanqueName, nivel) VALUE ("Manumanito", 70);
+
+
+insert into reportesTanques (tanqueName, nivel) VALUE ("Edgar", 70);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+docker run -it --rm -p 1883:1883 -p 9001:9001 -v S:\mosquitto:/mosquitto/config/mosquitto.conf eclipse-mosquitto
