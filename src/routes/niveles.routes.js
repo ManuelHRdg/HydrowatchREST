@@ -6,7 +6,7 @@ const router = Router();
 //Ruta de prueba
 router.get("/saludar/saludo", nivelesController.saludar);
 
-router.get("/", nivelesController.getNiveles);
+router.get("/Historial/:nombreTanque/:fecha", nivelesController.getNiveles);
 router.get("/:nombreTanque", nivelesController.getNivel);
 router.post("/", nivelesController.llenarTanque);
 

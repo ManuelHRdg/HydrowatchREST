@@ -4,9 +4,11 @@ import {dbConnection as db} from "./../database/database.js";
 const getNiveles = async(req, res) => {
 
     try{
-        
+        const {nombreTanque, fecha} = req.params;
+        const filter = [nombreTanque, fecha];
         const getConnection = await db.getConnection();
-        const result = await getConnection.query("SELECT nivel, TIME(fecha) as tiempo FROM reportesTanques WHERE DATE(fecha)='2023-06-02'");
+        const result = await getConnection.query("SELECT nivel, HOUR(fecha) as tiempo FROM reportesTanques WHERE tanqueName=? AND DATE(fecha)=?", filter);
+        //'2023-06-02'
         console.log(result);
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.json(result);
@@ -26,7 +28,7 @@ const getNivel = async(req, res) => {
         console.log(req.params);
         const {nombreTanque} = req.params;
         const getConnection = await db.getConnection();
-        const result = await getConnection.query("SELECT nivel, TIME(fecha) as tiempo FROM reportesTanques WHERE tanqueName=? order by fecha DESC limit 1", nombreTanque);
+        const result = await getConnection.query("SELECT nivel, HOUR(fecha) as tiempo FROM reportesTanques WHERE tanqueName=? order by fecha DESC limit 1", nombreTanque);
         console.log(result);
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.json(result);
