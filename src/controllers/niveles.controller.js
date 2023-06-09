@@ -62,6 +62,7 @@ const llenarTanque = async(req, res) => {
 
 const saludar = async(req, res) => {
     console.log("Hola desde REST");
+    res.status(200).send({msg: `Hola desde REST`});
 };
 
 export const methods = {
