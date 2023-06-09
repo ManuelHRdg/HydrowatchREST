@@ -4,7 +4,7 @@ import {methods as nivelesController} from "./../controllers/niveles.controller.
 const router = Router();
 
 //Ruta de prueba
-router.get("/saludo", nivelesController.saludar);
+router.get("/saludar/saludo", nivelesController.saludar);
 
 router.get("/", nivelesController.getNiveles);
 router.get("/:nombreTanque", nivelesController.getNivel);
