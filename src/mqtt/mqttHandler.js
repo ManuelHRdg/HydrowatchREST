@@ -13,8 +13,10 @@ class MqttHandler {
 
     connect() {
         //Connection to MQTT
-      this.mqttClient = mqtt.connect('mqtt://192.168.1.81');
-  
+      //this.mqttClient = mqtt.connect('mqtt://192.168.1.81');
+      this.mqttClient = mqtt.connect('mqtt://broker.hivemq.com');
+
+      
       // Mqtt error calback
       this.mqttClient.on('error', (err) => {
         console.log(err);
